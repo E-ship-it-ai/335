@@ -1,3 +1,9 @@
+commit 1f5e7f9a1e10439f448bf510344695d87a209f62
+Author: E-ship-it-ai <timoneggi@gmx.ch>
+Date:   Wed Feb 3 09:02:59 2021 +0100
+
+    Looks like it works. Added the functionality to switch between activities
+
 commit 9691d34d33eaf81bce915d8e64fef5bbb1485653
 Author: E-ship-it-ai <timoneggi@gmx.ch>
 Date:   Wed Feb 3 08:26:25 2021 +0100
