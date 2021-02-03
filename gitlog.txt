@@ -1,0 +1,5 @@
+commit 9691d34d33eaf81bce915d8e64fef5bbb1485653
+Author: E-ship-it-ai <timoneggi@gmx.ch>
+Date:   Wed Feb 3 08:26:25 2021 +0100
+
+    First commit hope it works this time. Put in both activitis i want to focus on and the list

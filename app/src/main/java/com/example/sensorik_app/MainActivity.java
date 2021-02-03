@@ -42,12 +42,8 @@ public class MainActivity extends ListActivity {
     // click event for the list
     @Override
     protected void onListItemClick(ListView list, View view, int position, long id) {
-        super.onListItemClick(list, view, position, id);
-
-        String selectedItem = (String) getListView().getItemAtPosition(position);
-        //String selectedItem = (String) getListAdapter().getItem(position);
         Intent intent = new Intent(MainActivity.this, TempActivity.class);
-        text.setText("You clicked " + selectedItem + " at position " + position);
+        startActivity(intent);
     }
 
 }
