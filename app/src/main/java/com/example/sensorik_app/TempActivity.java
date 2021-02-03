@@ -16,8 +16,8 @@ public class TempActivity extends AppCompatActivity implements SensorEventListen
     private SensorManager sensorManager;
     private Sensor tempSensor;
     private Boolean isTempsensor;
-
-
+    private TextView text_fahrenheit;
+    private TextView text_kelvin;
 
 
 
@@ -25,7 +25,9 @@ public class TempActivity extends AppCompatActivity implements SensorEventListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_temp);
-        textView = findViewById(R.id.textView4);
+        textView = findViewById(R.id.textView1);
+        text_fahrenheit = findViewById(R.id.textView2);
+        text_kelvin = findViewById(R.id.textView3);
         sensorManager= (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         if(sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE)!=null){
 
@@ -44,7 +46,9 @@ public class TempActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-    textView.setText(sensorEvent.values[0]+"°c");
+    textView.setText(sensorEvent.values[0]+" °c");
+    text_fahrenheit.setText(sensorEvent.values[0]*9/5+32+" °f");
+    text_kelvin.setText(sensorEvent.values[0]+ 273.15 +" °k");
     }
 
     @Override
@@ -55,7 +59,7 @@ public class TempActivity extends AppCompatActivity implements SensorEventListen
     @Override
     protected void onResume() {
         super.onResume();
-        if(isTempsensor = true){
+        if(isTempsensor == true){
             sensorManager.registerListener(this,tempSensor,SensorManager.SENSOR_DELAY_NORMAL);
 
         }
@@ -64,7 +68,7 @@ public class TempActivity extends AppCompatActivity implements SensorEventListen
     @Override
     protected void onPause() {
         super.onPause();
-    if(isTempsensor = true)
+    if(isTempsensor == true)
         sensorManager.unregisterListener(this);
     }
 }

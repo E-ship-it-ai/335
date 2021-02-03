@@ -7,9 +7,74 @@
     android:layout_height="match_parent"
     tools:context=".TempActivity">
 
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="648dp"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:translationY="200px">
+
+    </LinearLayout>
+
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="°c"
+        android:textSize="20sp"
+        app:layout_anchor="@+id/linearLayout2"
+        app:layout_anchorGravity="start|center" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="°f"
+        android:textSize="20sp"
+        app:layout_anchor="@+id/linearLayout2"
+        app:layout_anchorGravity="center" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:text="°k"
+        android:textSize="20sp"
+        app:layout_anchor="@+id/linearLayout2"
+        app:layout_anchorGravity="end|center" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#b6ccc2"
+        android:text="In diesem Fenster wird die aktuelle Temperatur angezeigt. Diese wird vom System in Celsius erfasst und danach in Fahrenheit und Kelvin umgerechnet.\n \n Wusstest du das 0 grad Kelvin den absoluten Nullpunkt darstellt?"
+        android:textSize="24sp"
+        android:translationY="-500px"
+        app:layout_anchor="@+id/textView2"
+        app:layout_anchorGravity="end|center" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:text="Temperatur"
+        android:background="@color/teal_700"
+        android:textSize="60sp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:translationX="-55px"
+        android:translationY="-70px"
+        app:layout_anchor="@+id/linearLayout2"
+        app:layout_anchorGravity="end|bottom"
+        tools:srcCompat="@android:drawable/ic_menu_share" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
