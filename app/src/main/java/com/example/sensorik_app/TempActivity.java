@@ -1,51 +1,72 @@
 package com.example.sensorik_app;
 
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
-
-import com.google.android.material.snackbar.Snackbar;
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.View;
+import android.widget.TextView;
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+public class TempActivity extends AppCompatActivity implements SensorEventListener {
+    private TextView textView;
+    private SensorManager sensorManager;
+    private Sensor tempSensor;
+    private Boolean isTempsensor;
 
-import com.example.sensorik_app.databinding.ActivityTempBinding;
 
-public class TempActivity extends AppCompatActivity {
 
-    private AppBarConfiguration appBarConfiguration;
-    private ActivityTempBinding binding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_temp);
+        textView = findViewById(R.id.textView4);
+        sensorManager= (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        if(sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE)!=null){
 
-        binding = ActivityTempBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+            tempSensor = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+            isTempsensor = true;
 
-        setSupportActionBar(binding.toolbar);
+        }
+        else{
 
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_temp);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+            textView.setText("Sensor not found");
+        isTempsensor = false;
+        }
 
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+    }
+
+
+    @Override
+    public void onSensorChanged(SensorEvent sensorEvent) {
+    textView.setText(sensorEvent.values[0]+"°c");
     }
 
     @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_temp);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(isTempsensor = true){
+            sensorManager.registerListener(this,tempSensor,SensorManager.SENSOR_DELAY_NORMAL);
+
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    if(isTempsensor = true)
+        sensorManager.unregisterListener(this);
     }
 }
+
+
